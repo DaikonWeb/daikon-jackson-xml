@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'DaikonWeb.daikon-jackson-xml'
-version '0.6.3'
+version '1.0.0'
 
 repositories {
     mavenCentral()
