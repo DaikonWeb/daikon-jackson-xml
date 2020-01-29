@@ -1,4 +1,4 @@
-package daikon.jacksonxml
+package daikon.jackson.xml
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import daikon.Response

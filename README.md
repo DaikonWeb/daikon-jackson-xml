@@ -21,7 +21,7 @@ repositories {
 ```
 - Add the dependency
 ```
-implementation 'com.github.DaikonWeb:daikon-jackson-xml:1.0.0'
+implementation('com.github.DaikonWeb:daikon-jackson-xml:1.0.0')
 ```
 
 ### Maven

@@ -1,9 +1,9 @@
-package daikon.jacksonxml
+package daikon.jackson.xml
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 import daikon.HttpServer
-import daikon.jacksonxml.Suit.*
+import daikon.jackson.xml.Suit.*
 import khttp.get
 import khttp.post
 import org.assertj.core.api.Assertions.assertThat
