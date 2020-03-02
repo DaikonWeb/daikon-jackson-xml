@@ -5,6 +5,11 @@ TAG=$1
 
 cd ${PROJECT_DIR}
 
+if git rev-parse "$TAG" >/dev/null 2>&1; then
+  echo "tag $TAG already exists";
+  exit 0
+fi
+
 sed -i -e "s|'com.github.DaikonWeb:daikon:.*'|'com.github.DaikonWeb:daikon:${TAG}'|g" build.gradle
 sed -i -e "s|'com.github.DaikonWeb:${PROJECT_NAME}:.*'|'com.github.DaikonWeb:${PROJECT_NAME}:${TAG}'|g" README.md
 sed -i -e "s|<version>.*</version>|<version>${TAG}</version>|g" README.md
