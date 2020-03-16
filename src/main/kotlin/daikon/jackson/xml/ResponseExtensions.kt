@@ -1,7 +1,7 @@
 package daikon.jackson.xml
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import daikon.Response
+import daikon.core.Response
 import org.eclipse.jetty.http.MimeTypes.Type.TEXT_XML_UTF_8
 
 fun Response.xml(value: Any) {
