@@ -4,11 +4,10 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 import daikon.HttpServer
 import daikon.jackson.xml.Suit.*
-import khttp.get
-import khttp.post
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jetty.http.MimeTypes.Type.TEXT_XML_UTF_8
 import org.junit.jupiter.api.Test
+import topinambur.http
 
 class HttpJsonTest {
 
@@ -26,9 +25,9 @@ class HttpJsonTest {
         HttpServer()
             .get("/") { _, res -> res.xml(hand) }
             .start().use {
-                val response = get("http://localhost:4545/")
-                assertThat(response.headers["Content-Type"]).isEqualTo(TEXT_XML_UTF_8.asString())
-                assertThat(response.text).isEqualTo(expected)
+                val response = "http://localhost:4545/".http.get()
+                assertThat(response.header("Content-Type")).isEqualTo(TEXT_XML_UTF_8.asString())
+                assertThat(response.body).isEqualTo(expected)
             }
     }
 
@@ -37,11 +36,10 @@ class HttpJsonTest {
         HttpServer()
             .post("/") { req, res -> res.xml(req.xml<BlackjackHand>()) }
             .start().use {
-                val response = post(
-                    url = "http://localhost:4545/",
-                    data = """<blackjackHand><hiddenCard><rank>4</rank><suit>CLUBS</suit></hiddenCard><visibleCards><card><rank>1</rank><suit>DIAMONDS</suit></card><card><rank>7</rank><suit>HEARTS</suit></card></visibleCards></blackjackHand>"""
+                val response = "http://localhost:4545/".http.post(
+                    body = """<blackjackHand><hiddenCard><rank>4</rank><suit>CLUBS</suit></hiddenCard><visibleCards><card><rank>1</rank><suit>DIAMONDS</suit></card><card><rank>7</rank><suit>HEARTS</suit></card></visibleCards></blackjackHand>"""
                 )
-                assertThat(response.text).isEqualTo("""<blackjackHand><hiddenCard><rank>4</rank><suit>CLUBS</suit></hiddenCard><visibleCards><card><rank>1</rank><suit>DIAMONDS</suit></card><card><rank>7</rank><suit>HEARTS</suit></card></visibleCards></blackjackHand>""")
+                assertThat(response.body).isEqualTo("""<blackjackHand><hiddenCard><rank>4</rank><suit>CLUBS</suit></hiddenCard><visibleCards><card><rank>1</rank><suit>DIAMONDS</suit></card><card><rank>7</rank><suit>HEARTS</suit></card></visibleCards></blackjackHand>""")
             }
     }
 }
