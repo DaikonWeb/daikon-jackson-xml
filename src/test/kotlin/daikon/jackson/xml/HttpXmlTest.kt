@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 import daikon.HttpServer
 import daikon.jackson.xml.Suit.*
 import org.assertj.core.api.Assertions.assertThat
-import org.eclipse.jetty.http.MimeTypes.Type.TEXT_XML_UTF_8
 import org.junit.jupiter.api.Test
 import topinambur.http
 
@@ -26,7 +25,7 @@ class HttpJsonTest {
             .get("/") { _, res -> res.xml(hand) }
             .start().use {
                 val response = "http://localhost:4545/".http.get()
-                assertThat(response.header("Content-Type")).isEqualTo(TEXT_XML_UTF_8.asString())
+                assertThat(response.header("Content-Type")).isEqualTo(TEXT_XML_UTF_8)
                 assertThat(response.body).isEqualTo(expected)
             }
     }
