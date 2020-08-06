@@ -11,7 +11,7 @@ repositories {
 dependencies {
     implementation platform('org.jetbrains.kotlin:kotlin-bom')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    implementation 'com.github.DaikonWeb:daikon:1.7.2'
+    implementation 'com.github.DaikonWeb:daikon:1.8.0'
 
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.1'
 
